@@ -1,15 +1,5 @@
 [
   {
-    "id": "...",
-    "userId": "...",
-    "bookId": "...",
-    "location": "Chennai",
-    "issuedAt": "...",
-    "dueDate": "...",
-    "returnedAt": null,
-    "status": "ISSUED"
-  },
-  {
     "id": "7a180def-b2dd-4a3b-a85e-8ec28a91d798",
     "userId": "u2",
     "bookId": "b105645d-07fa-417d-9ede-dc750509c033",
@@ -110,6 +100,7 @@
     "status": "RETURNED"
   },
   {
+<<<<<<< HEAD
     "id": "93dc6d85-899c-4f1d-adb0-fecd53b8070e",
     "userId": "u1772012375909",
     "bookId": "b105645d-07fa-417d-9ede-dc750509c033",
@@ -117,6 +108,15 @@
     "issuedAt": "2026-02-25T10:15:32.683Z",
     "dueDate": "2026-03-11T10:15:32.684Z",
     "returnedAt": "2026-02-25T10:15:40.465Z",
+=======
+    "id": "b1280b64-965e-49c8-bc2b-d6d1c175ed36",
+    "userId": "u1771958698106",
+    "bookId": "ed6ed3e7-28b4-4c21-acdd-607d28bca655",
+    "location": "Chennai",
+    "issuedAt": "2026-01-24T18:59:55.611Z",
+    "dueDate": "2026-01-30T18:59:55.611Z",
+    "returnedAt": "2026-02-25T05:44:43.390Z",
+>>>>>>> 79d1f369656ee7478cd8727402187325d7672b54
     "status": "RETURNED"
   }
 ]

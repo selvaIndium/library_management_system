@@ -56,10 +56,18 @@
     "createdAt": "2026-02-24T06:29:08.552Z"
   },
   {
+<<<<<<< HEAD
     "id": "u1772012375909",
     "name": "selva",
     "email": "selva@gmail.com",
     "role": "USER",
     "createdAt": "2026-02-25T09:39:35.909Z"
+=======
+    "id": "u1771958698106",
+    "name": "selva",
+    "email": "selva@gmail.com",
+    "role": "USER",
+    "createdAt": "2026-02-24T18:44:58.106Z"
+>>>>>>> 79d1f369656ee7478cd8727402187325d7672b54
   }
 ]

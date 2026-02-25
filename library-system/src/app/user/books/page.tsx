@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getStoredUser } from "@/libs/auth";
+import FilterBar from "@/app/components/FilterBar";
 import styles from "../user.module.css";
+import Image from "next/image";
 
 const LOCATIONS = ["Chennai", "Bangalore", "Delhi", "Mumbai"] as const;
 type Location = typeof LOCATIONS[number];
@@ -27,7 +29,10 @@ function totalAvailable(book: Book) {
 export default function UserBooksPage() {
   const router = useRouter();
   const [userId, setUserId] = useState("");
+
+  //contains all the books.
   const [books, setBooks] = useState<Book[]>([]);
+
   const [loading, setLoading] = useState(true);
 
   const [search, setSearch] = useState("");
@@ -40,6 +45,8 @@ export default function UserBooksPage() {
   const [borrowing, setBorrowing] = useState(false);
   const [borrowError, setBorrowError] = useState<string | null>(null);
 
+
+  //some route protection again.
   useEffect(() => {
     const user = getStoredUser();
     if (!user || user.role === "ADMIN") {
@@ -87,7 +94,8 @@ export default function UserBooksPage() {
       );
       setBorrowBook(null);
       alert("Book borrowed! Due in 14 days.");
-    } else {
+    } 
+    else {
       setBorrowError(data.error ?? "Something went wrong");
     }
   };
@@ -108,37 +116,25 @@ export default function UserBooksPage() {
     <div className={styles.container}>
       <h1 className={styles.title}>Browse Books</h1>
 
-      <div className={styles.filterBar}>
-        <input
-          className={styles.searchInput}
-          type="text"
-          placeholder="Search by title or author…"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <select
-          className={styles.filterSelect}
-          value={filterCategory}
-          onChange={(e) => setFilterCategory(e.target.value)}
-        >
-          <option value="">All Categories</option>
-          {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
-        </select>
-        <select
-          className={styles.filterSelect}
-          value={filterLocation}
-          onChange={(e) => setFilterLocation(e.target.value as Location | "")}
-        >
-          <option value="">All Branches</option>
-          {LOCATIONS.map((l) => <option key={l} value={l}>{l}</option>)}
-        </select>
-        {(search || filterCategory || filterLocation) && (
-          <button className={styles.clearBtn} onClick={() => { setSearch(""); setFilterCategory(""); setFilterLocation(""); }}>
-            Clear
-          </button>
-        )}
-        <span className={styles.resultCount}>{filtered.length} book{filtered.length !== 1 ? "s" : ""}</span>
-      </div>
+      <FilterBar
+        search={search}
+        onSearchChange={setSearch}
+        categoryOptions={CATEGORIES}
+        categoryValue={filterCategory}
+        onCategoryChange={setFilterCategory}
+        locationOptions={LOCATIONS}
+        locationValue={filterLocation}
+        onLocationChange={(value) => setFilterLocation(value as Location | "")}
+        onClear={() => {
+          setSearch("");
+          setFilterCategory("");
+          setFilterLocation("");
+        }}
+        resultLabel={`${filtered.length} book${filtered.length !== 1 ? "s" : ""}`}
+        searchPlaceholder="Search by title or author…"
+        categoryLabel="All Categories"
+        locationLabel="All Branches"
+      />
 
       {loading && <p>Loading…</p>}
       {!loading && filtered.length === 0 && <p className={styles.empty}>No books found.</p>}
@@ -149,7 +145,7 @@ export default function UserBooksPage() {
           return (
             <div key={book.id} className={styles.card}>
               {book.coverUrl
-                ? <img src={book.coverUrl} alt={book.title} className={styles.cover} />
+                ? <Image src={book.coverUrl} alt={book.title} className={styles.cover} width={120} height={160} />
                 : <div className={styles.coverPlaceholder} />}
               <div className={styles.info}>
                 <div className={styles.bookTitle}>{book.title}</div>
