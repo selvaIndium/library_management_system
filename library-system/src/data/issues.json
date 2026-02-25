@@ -108,5 +108,15 @@
     "dueDate": "2026-03-10T12:44:33.624Z",
     "returnedAt": "2026-02-24T12:44:42.185Z",
     "status": "RETURNED"
+  },
+  {
+    "id": "93dc6d85-899c-4f1d-adb0-fecd53b8070e",
+    "userId": "u1772012375909",
+    "bookId": "b105645d-07fa-417d-9ede-dc750509c033",
+    "location": "Bangalore",
+    "issuedAt": "2026-02-25T10:15:32.683Z",
+    "dueDate": "2026-03-11T10:15:32.684Z",
+    "returnedAt": "2026-02-25T10:15:40.465Z",
+    "status": "RETURNED"
   }
 ]

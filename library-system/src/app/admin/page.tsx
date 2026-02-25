@@ -5,7 +5,7 @@ import {Book} from "@/types/index"
 import styles from "./dashboard.module.css";
 import BookCard from "./components/bookCard";
 import { getStoredUser } from "@/libs/auth";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 type LocationStock = { total: number; available: number };
 type Location = "Chennai" | "Bangalore" | "Delhi" | "Mumbai";
@@ -20,6 +20,7 @@ export default function AdminDashboard() {
   const [search, setSearch] = useState("");
   const [filterLocation, setFilterLocation] = useState<Location | "">("");
   const [filterCategory, setFilterCategory] = useState("");
+
 
   const router = useRouter();
 
